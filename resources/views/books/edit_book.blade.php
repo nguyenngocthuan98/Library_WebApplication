@@ -52,12 +52,20 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
+                {{-- quantity --}}
+                <label>{{ trans('books/book_detail.quantity') }}</label>
+                <input class="form-control @error('quantity') is-invalid @enderror" name="quantity" value="{{ $idbook->quantity }}">
+                    @error('quantity')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 {{-- publisher --}}
                 <label>{{ trans('books/edit_book.publisher') }}</label>
                 <select class="custom-select" name="id_publisher">
                     <option></option>
                     @foreach ($publishers as $publisher)
-                        <option value="{{ $publisher->id }}" @if($idbook->id_author == $publisher->id) selected @endif >
+                        <option value="{{ $publisher->id }}" @if($idbook->id_publisher == $publisher->id) selected @endif >
                             {{ $publisher->name_publisher }}
                         </option>
                     @endforeach
@@ -90,22 +98,22 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                {{-- image --}}
-                <label>{{ trans('books/edit_book.upload_image') }}</label>
+                {{-- image still error for image--}}
+                {{-- <label>{{ trans('books/edit_book.upload_image') }}</label>
                 <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" value="{{ $idbook->image }}">
                     @error('image')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
-                    @enderror
+                    @enderror --}}
                 {{-- show image --}}
                 <div class="img text-center">
                     <img class="w-25" src="{{ asset($idbook->image) }}" alt="{{ $idbook->name_book }}">
                 </div>
                 {{-- confirm --}}
                 <div class="form-group edit_btn">
-                    <a href="{{ route('books.index')}}" class="btn_book_cancel">{{ trans('books/edit_book.cancel') }}</a>
-                    <button class="btn_book_edit" type="submit" class="btn-primary">{{ trans('books/edit_book.edit') }}</button>
+                    <a href="{{ route('books.index')}}" class="btn btn_book_cancel">{{ trans('books/edit_book.cancel') }}</a>
+                    <button class="btn btn_book_edit" type="submit" class="btn btn-primary">{{ trans('books/edit_book.edit') }}</button>
                 </div>
             </div>
         </form>

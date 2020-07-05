@@ -40,10 +40,10 @@
                     </label>
                 @enderror
                 <input class="form-control" type="text" name="address" placeholder="{{ trans('publishers/add_publisher.ex_address') }}" id="address">
-                
+
                 <div class="form-group edit_btn">
-                    <a href="{{ route('publishers.index') }}" class="btn_book_cancel btn btn-primary">{{ trans('publishers/add_publisher.cancel') }}</a>
-                    <button class="btn_book_add" type="submit" >{{ trans('publishers/add_publisher.add') }}</button>
+                    <a href="{{ route('publishers.index') }}" class="btn btn_book_cancel btn btn-primary">{{ trans('publishers/add_publisher.cancel') }}</a>
+                    <button class="btn btn_book_add" type="submit" >{{ trans('publishers/add_publisher.add') }}</button>
                 </div>
             </div>
         </form>

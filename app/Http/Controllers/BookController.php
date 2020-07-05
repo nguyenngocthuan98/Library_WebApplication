@@ -26,10 +26,22 @@ class BookController extends Controller
      */
     public function index()
     {
-        $take = config('setting.take-book');
-        $listbook = $this->bookRepo->paginate('id','DESC',$take);
+        // $take = config('setting.take-book');
+        // $listbook = $this->bookRepo->paginate('id','DESC',$take);
 
-        return view('books.book_list' ,compact('listbook'));
+        // return view('books.book_list' ,compact('listbook'));
+        $take = config('setting.take-book');
+        $filters = request()->only('key');
+
+        if($filters){
+            // for search
+            $listbook = $this->bookRepo->getBookBySearchName($filters['key'], $take);
+        }
+        else{
+            $listbook = $this->bookRepo->paginate('id','DESC',$take);
+        }
+
+        return view('books.book_list', compact('listbook'));
     }
 
     /**
@@ -55,6 +67,7 @@ class BookController extends Controller
             $book = [
                 'name_book' => $req->name_book,
                 'page_number' => $req->page_number,
+                'quantity' => $req->quantity,
                 'image' => $req->image,
                 'description'  => $req->description,
                 'id_publisher' => $req->id_publisher,
@@ -112,7 +125,8 @@ class BookController extends Controller
             $book = [
                 'name_book' => $req->name_book,
                 'page_number' => $req->page_number,
-                'image' => $req->image,
+                'quantity' => $req->quantity,
+                // 'image' => $req->image,
                 'description'  => $req->description,
                 'id_publisher' => $req->id_publisher,
                 'id_category' => $req->id_category,

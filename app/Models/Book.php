@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Like;
 use App\Models\Publisher;
 use App\Models\Comment;
+use App\Models\Borrow;
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
@@ -28,6 +29,7 @@ class Book extends Model
         'name_book',
         'status',
         'page_number',
+        'quantity',
         'image',
         'description',
         'id_category',

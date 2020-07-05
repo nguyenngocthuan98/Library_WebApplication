@@ -94,8 +94,8 @@
                 <input class="form-control" id="password-confirm" type="password" name="password_confirmation" placeholder="{{ trans('users/add_user.ex_confirm_password') }}" required autocomplete="new-password">
                 {{-- submit --}}
                 <div class="form-group edit_btn">
-                    <button class="btn_book_cancel" > <a href="{{ route('users.index') }}">{{ trans('users/add_user.cancel') }}</a></button>
-                    <button class="btn_book_add" type="submit">{{ trans('users/add_user.add') }}</button>
+                    <button class="btn btn_book_cancel" > <a href="{{ route('users.index') }}">{{ trans('users/add_user.cancel') }}</a></button>
+                    <button class="btn btn_book_add" type="submit">{{ trans('users/add_user.add') }}</button>
                 </div>
             </div>
         </form>

@@ -26,7 +26,8 @@ class BookRequest extends FormRequest
         return [
             'name_book' => 'required|max:255',
             'page_number' => 'required|regex:/[0-9]/',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'quantity' => 'required|regex:/[0-9]/',
+            // 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description'  => 'string',
             'id_publisher' => 'required|max:255',
             'id_category' => 'required|max:255',

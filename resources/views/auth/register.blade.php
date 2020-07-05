@@ -113,16 +113,16 @@
                             {{-- btn-register --}}
                             <div class="form-group row mb-0 ">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn_register">
+                                    <button type="submit" class="btn btn_register">
                                         {{ trans('auth/register.btn_register') }}
                                     </button>
-                                    <a class="btn_login" type="button" href="{{ route('login') }}">
+                                    <a class="btn btn_login" type="button" href="{{ route('login') }}">
                                         {{ trans('auth/register.login') }}
                                     </a>
                                 </div>
                             </div>
                         </form>
-                        
+
                     </div>
                 </div>
             </div>

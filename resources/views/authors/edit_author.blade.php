@@ -27,7 +27,7 @@
                 @enderror
                 <div class="form-group edit_btn">
                     <a href="{{ route('authors.index') }}" class="btn btn-success">Cancel</a>
-                    <button class="btn_book_add" type="submit">{{ trans('authors/edit_author.edit') }}</button>
+                    <button class="btn btn_book_add" type="submit">{{ trans('authors/edit_author.edit') }}</button>
                 </div>
             </div>
         </form>

@@ -13,11 +13,15 @@
                         @foreach($bookhomes as $book)
                         <div class="col-lg-4 col-md-6">
                             <div class="book_item">
-                                <a href="{{ route('books.show',$book->id) }}"><img src="{{ $book->image }}" alt="#"></a>
+                                <a href="{{ route('books.show',$book->id) }}"><img class="img_height" src="{{ $book->image }}" alt="#"></a>
                                 <h5><a class="text_book" href="{{ route('books.show',$book->id) }}">{{ $book->name_book }}</a></h5>
                                 <div class="row">
                                     <div class="col-6">
-                                        <a type="button" href="{{ route('borrow.show', ['id' => $book->id]) }}" class="btn_borrow">Borrow</a>
+                                        @if($book->quantity > 0)
+                                        <a type="button" href="{{ route('borrow.show', ['id' => $book->id]) }}" class="btn btn_borrow">Borrow</a>
+                                        @else
+                                        <span class="badge badge-danger">Runned out</span>
+                                        @endif
                                     </div>
                                     <div class="col-6">
                                         <a href="{{ route('books.show',$book->id) }}" class="read_more">{{ trans('books/book.read_more') }}<img src="image/double-arrow.png" alt="double arrow"/></a>
@@ -51,9 +55,21 @@
                                 <h4 class="widget_title"> {{ trans('books/book.category') }} </h4>
                                 <ul>
                                     @foreach ($categories as $category)
-                                        <li value="{{ $category->id }}">
-                                            {{ $category->name_category }}
+                                        @if(sizeof($category->children) > 0)
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $category->name_category }}</a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="{{ route('categories.show',$category->id) }}">{{ $category->name_category }}</a>
+                                                @foreach($category->children as $submenu)
+                                                <a class="dropdown-item" href="{{ route('categories.show',$submenu->id) }}">{{ $submenu->name_category }}</a>
+                                                @endforeach
+                                            </div>
                                         </li>
+                                        @elseif($category->id_parent == null)
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('categories.show',$category->id) }}">{{ $category->name_category }}</a>
+                                            </li>
+                                        @endif
                                     @endforeach
                                 </ul>
                             </div>

@@ -9,7 +9,7 @@
             <div class="col-9 page_info_b">
                 <h2>{{ trans('borrows/list_borrow.name_list') }}</h2>
             </div>
-            <div class="col-3">
+            {{-- <div class="col-3">
                 <div class="search-author">
                     <form class="search_widget" action="" method="GET">
                         <input type="hidden" name="action" value="search">
@@ -17,7 +17,7 @@
                         <button type="submit">{{ trans('borrows/list_borrow.search') }}</button>
                     </form>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <table class="table table-striped text_table group_table">
             <thead>
@@ -26,7 +26,7 @@
                     <th scope="col">{{ trans('borrows/list_borrow.name_book') }}</th>
                     <th scope="col">{{ trans('borrows/list_borrow.date_borrow') }}</th>
                     <th scope="col">{{ trans('borrows/list_borrow.date_pay') }}</th>
-                    <th scope="col">{{ trans('borrows/list_borrow.name_user') }}</th>
+                    {{-- <th scope="col">{{ trans('borrows/list_borrow.name_user') }}</th> --}}
                     <th scope="col">{{ trans('borrows/list_borrow.status') }}</th>
                     <th class="witdth_lb" scope="col">{{ trans('authors/author.option') }}</th>
                 </tr>
@@ -38,7 +38,7 @@
                     <td scope="row">{{ $borrow->book->name_book }}</td>
                     <td scope="row">{{ $borrow->created_at }}</td>
                     <td scope="row">{{ $borrow->date_pay }}</td>
-                    <td scope="row">{{ $borrow->user->name }}</td>
+                    {{-- <td scope="row">{{ $borrow->user->name }}</td> --}}
                     <td scope="row">
                         @switch ($borrow->accept)
                           @case (App\Models\Borrow::WAITING)

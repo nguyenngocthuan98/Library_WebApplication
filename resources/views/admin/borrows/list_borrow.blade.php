@@ -7,21 +7,22 @@
     <div class="container borrow_lb">
         <div class="row">
             <div class="col-9 page_info_b">
-                <h2>{{ trans('borrows/list_borrow.name_list') }}</h2>
+                <h2>{{ trans('borrows/list_borrow.req_borrow') }}</h2>
             </div>
-            <div class="col-3">
+            {{-- <div class="col-3">
                 <div class="search-author">
                     <form class="search_widget" action="" method="GET">
                         <input type="hidden" name="action" value="search">
-                        <input type="text" name="key" id="input" class="form-control" value="" placeholder="Search Computer ...">
+                        <input type="text" name="key" id="input" class="form-control" value="" placeholder="Search ...">
                         <button type="submit">{{ trans('borrows/list_borrow.search') }}</button>
                     </form>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <table class="table table-striped text_table group_table">
             <thead>
                 <tr>
+                    <th scope="col">{{ 'No.' }}</th>
                     <th scope="col">{{ trans('borrows/list_borrow.id') }}</th>
                     <th scope="col">{{ trans('borrows/list_borrow.name_book') }}</th>
                     <th scope="col">{{ trans('borrows/list_borrow.date_borrow') }}</th>
@@ -32,9 +33,11 @@
                 </tr>
             </thead>
             {{-- data below --}}
+            @php  ($i=1)
             @foreach($listborrow as $borrow)
             <tbody>
                 <tr>
+                    <td scope="row"><?php echo $i++ ?></td>
                     <td scope="row">{{ $borrow->id }}</td>
                     <td scope="row">{{ $borrow->book->name_book }}</td>
                     <td scope="row">{{ $borrow->created_at }}</td>
@@ -60,10 +63,10 @@
                     </td>
                     <td>
                         @if($borrow->accept == App\Models\Borrow::WAITING)
-                            <a class="btn btn-success" href="{{ route('admin.borrow.accept', ['id' => $borrow->id]) }}" title="accept" href="">{{ trans('borrows/list_borrow.accept') }}</a>
+                            <a class="btn btn-success" href="{{ route('admin.borrow.accept', ['id' => $borrow->id, 'id_book' => $borrow->book->id]) }}" title="accept">{{ trans('borrows/list_borrow.accept') }}</a>
                             <a class="btn btn-danger" href="{{ route('admin.borrow.deny', ['id' => $borrow->id]) }}">{{ trans('borrows/list_borrow.deny') }}</a>
                         @elseif($borrow->accept == App\Models\Borrow::BORROWING)
-                            <a class="btn btn-warning" href="{{ route('admin.borrow.pay', ['id' => $borrow->id]) }}">{{ trans('borrows/list_borrow.return') }}</a>
+                            <a class="btn btn-warning" href="{{ route('admin.borrow.pay', ['id' => $borrow->id, 'id_book' => $borrow->book->id]) }}">{{ trans('borrows/list_borrow.return') }}</a>
                         @else
                             <form action="{{ route('user.borrow.destroy',$borrow->id) }}" method="GET">
                             @csrf

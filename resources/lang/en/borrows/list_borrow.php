@@ -1,8 +1,9 @@
 <?php
 
 return [
-	'title_header' => 'List Borrows Book',
-	'name_list' => 'List Borrow Book',
+	'title_header' => 'Your List Borrows Book',
+	'name_list' => 'Your List Borrow Book',
+	'req_borrow' => 'Request Borrow Book',
 	'search' => 'Search',
 	'id' => 'ID',
 	'name_book' => 'Name Book',

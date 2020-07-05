@@ -26,14 +26,16 @@ Route::group(['namespace' => 'Auth'],function(){
 Route::group(['namespace' => 'Admin', 'middleware' => 'is_admin', 'prefix' => 'admin'], function() {
     Route::get('statistical', 'HomeController@index')->name('admin.home.index');
     Route::get('borrows', 'BorrowController@index')->name('admin.borrow.index');
-    Route::get('borrows/accept/{id}', 'BorrowController@accept')->name('admin.borrow.accept');
+    Route::get('borrows/accept/{id}/{id_book}', 'BorrowController@accept')->name('admin.borrow.accept');
     Route::get('borrows/deny/{id}', 'BorrowController@deny')->name('admin.borrow.deny');
-    Route::get('borrows/return/{id}', 'BorrowController@pay')->name('admin.borrow.pay');
+    Route::get('borrows/return/{id}/{id_book}', 'BorrowController@pay')->name('admin.borrow.pay');
     Route::get('borrow/destroy/{id}', 'BorrowController@destroy')->name('admin.borrow.destroy');
     Route::get('borrow/action/{id}', 'BorrowController@action')->name('admin.borrow.action');
     Route::get('chart', 'ChartBorrowController@index')->name('admin.chart_borrow.index');
-    Route::resource('users', 'UsersController');
 });
+
+//User
+Route::resource('users', 'UsersController');
 
 //Home
 Route::get('/', 'HomeController@index')->name('home');
@@ -49,6 +51,9 @@ Route::resource('authors', 'AuthorController');
 
 //Publisher
 Route::resource('publishers', 'PublisherController');
+
+//Category
+Route::resource('categories', 'CategoryController');
 
 //Comment
 Route::post('comment/{id}', 'CommentController@comment')->name('comment.post');

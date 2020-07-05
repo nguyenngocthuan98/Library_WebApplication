@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\AuthorController;
 use App\Http\Requests\AuthorRequest;
 use App\Repositories\Author\AuthorRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

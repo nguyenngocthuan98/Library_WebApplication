@@ -14,7 +14,7 @@
         @endif
         <div class="row">
             <div class="col-9">
-                <a type="button" class="btn_new" href="{{ route('users.create') }}">{{ trans('users/user.add_new') }}</a>
+                <a type="button" class="btn btn_new" href="{{ route('users.create') }}">{{ trans('users/user.add_new') }}</a>
             </div>
             <div class="col-3">
                 <div class="search-user">
@@ -67,12 +67,12 @@
                         @endif
                     </td>
                     <td>
-                        <a href="{{ route('users.edit',$data_user->id)}}" class="btn_edit edit_user" title="Edit" type="submit" value="Edit">{{ trans('users/user.edit') }}</a>
+                        <a href="{{ route('users.edit',$data_user->id)}}" class="btn btn_edit edit_user" title="Edit" type="submit" value="Edit">{{ trans('users/user.edit') }}</a>
 
                         <form action="{{ url("users/$data_user->id") }}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('delete') }}
-                            <button class="btn_delete delete_user" title="Delete" type="submit" value="Delete">{{ trans('users/user.delete') }}</button>
+                            <button class="btn btn_delete delete_user" title="Delete" type="submit" value="Delete">{{ trans('users/user.delete') }}</button>
                         </form>
                     </td>
                 </tr>

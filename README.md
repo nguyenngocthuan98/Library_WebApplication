@@ -6,12 +6,16 @@
 - composer dump-autoload
 
 Add new .env file
-.env.demo is my .env demo (I recommend using your new .env file)
-Create new empty database BD_DATABASE
-Use our DB file: libra.sql
-Add new your BD_DATABASE, DB_USERNAME, DB_PASSWORD
+.env.demo is my .env demo (I recommend using your new .env file).
+
+Create new empty database BD_DATABASE.
+
+Use our DB file: libra.sql.
+
+Add new your BD_DATABASE, DB_USERNAME, DB_PASSWORD.
+
 You need generate new APP_KEY with command
-- php artisan key:ganerate
+- php artisan key:generate
 
 Accout for test
 - admin: admin@admin.com

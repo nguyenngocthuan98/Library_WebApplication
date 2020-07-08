@@ -12,7 +12,7 @@ Create new empty database BD_DATABASE.
 
 Use our DB file: libra.sql.
 
-Add new your BD_DATABASE, DB_USERNAME, DB_PASSWORD.
+Add new your BD_DATABASE, DB_USERNAME, DB_PASSWORD in env file.
 
 You need generate new APP_KEY with command
 - php artisan key:generate

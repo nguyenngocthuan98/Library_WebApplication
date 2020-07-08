@@ -1,4 +1,4 @@
-# library_management_practice
+# library_webapplication
 
 ## Install Guide
 - cd library_webapplication

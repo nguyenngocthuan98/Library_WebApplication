@@ -31,10 +31,10 @@ class PublisherController extends Controller
             // for search
             $publisher = $this->publisherRepo->getPublisherBySearchName($filters['key'], $pagi);        }
         else{
-            
+
             $publisher = $this->publisherRepo->paginate('id','ASC', $pagi);
         }
-        
+
         return view('publishers.publisher', ['publisher' => $publisher]);
     }
 
@@ -91,7 +91,7 @@ class PublisherController extends Controller
     {
         try {
             $publisher = $this->publisherRepo->FindOrFail($id);
-            
+
             return view('publishers.edit_publisher',compact('publisher'));
         } catch (ModelNotFoundException $e) {
             throw new Exception($e->getMessage());

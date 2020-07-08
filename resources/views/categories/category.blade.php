@@ -4,67 +4,55 @@
 
 @section('main')
 
-<section class="book_section">
-     <div class="container list_book">
+<section class="group_section">
+    <div class="container list_category">
         <div class="row">
             <div class="col-9">
-                <button type="button" class="btn_new">{{ trans('categories/category.btn_add') }}</button>
+                {{-- @if (auth()->check() && Auth::user()->role == \App\Models\User::ADMIN)
+                    <a href="{{ url('categories/create') }}"><button class="btn btn_new">{{ trans('categories/category.btn_add') }}</button></a>
+                @endif --}}
             </div>
             <div class="col-3">
-                <div id="stickySidebar">
-                    <div class="widget_item">
-                        <form class="search_widget">
-                            <input type="text">
-                            <button> {{ trans('categories/category.search') }} </button>
-                        </form>
-                    </div>
+                <div class="search-author">
+                    <form class="search_widget" action="{{ url('categories') }}" method="GET">
+                        <input type="hidden" name="action" value="search">
+                        <input type="text" name="key" id="input" class="form-control" value="" placeholder="{{ trans('categories/category.search') }}">
+                        <button type="submit">{{ trans('categories/category.search') }}</button>
+                    </form>
                 </div>
             </div>
         </div>
-            <table class="table table-striped text_table">
-                <thead>
-                    <tr>
-                        <th scope="col">{{ trans('categories/category.id') }}</th>
-                        <th scope="col">{{ trans('categories/category.name') }}</th>
-                        <th scope="col">{{ trans('categories/category.id_parent') }}</th>
-                        <th scope="col">{{ trans('categories/category.path') }}</th>
-                        <th scope="col">{{ trans('categories/category.option') }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td scope="row"><a class="book_detail" href="">Gao</a></td>
-                        <td scope="row">02</td>
-                        <td scope="row">12/12/12</td>
+        <table class="table table-striped text_table group_table">
+            <thead>
+                <tr>
+                    <th scope="col">{{ trans('categories/category.id') }}</th>
+                    <th scope="col">{{ trans('categories/category.name') }}</th>
+                    @if (auth()->check() && Auth::user()->role == \App\Models\User::ADMIN)
+                        <th class="opt_auth" scope="col">{{ trans('categories/category.option') }}</th>
+                    @endif
+                </tr>
+            </thead>
+            @foreach ($category as $data_category)
+            <tbody>
+                <tr>
+                    <td scope="row">{{ $data_category->id }}</td>
+                    <td scope="row"><a class="text_book" href="{{ route('categories.show',$data_category->id) }}">{{ $data_category->name_category }}</a></td>
+                    @if (auth()->check() && Auth::user()->role == \App\Models\User::ADMIN)
                         <td>
-                            <button class="btn_edit" title="Edit" type="submit" value="Edit">{{ trans('categories/category.edit') }}</button>
-                            <button class="btn_delete" title="Delete" type="submit" value="Delete">{{ trans('categories/category.delete') }}</button>
+                            {{-- <a href="{{ url('categories/'.$data_category->id.'/edit')}}"><button class="btn btn_edit" title="Edit" type="submit" value="Edit">{{ trans('categories/category.edit') }}</button></a> --}}
+                            <form class="set_form" action="{{ url("categories/$data_category->id") }}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('delete') }}
+                                <button class="btn btn_delete" type="submit" title="Delete">{{ trans('categories/category.delete') }}</button>
+                            </form>
                         </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td scope="row"><a class="book_detail" href="">Gao</a></td>
-                        <td scope="row">02/02/2020</td>
-                        <td scope="row">Nam</td>
-                        <td>
-                            <button class="btn_edit" title="Edit" type="submit" value="Edit">{{ trans('categories/category.edit') }}</button>
-                            <button class="btn_delete" title="Delete" type="submit" value="Delete">{{ trans('categories/category.delete') }}</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td scope="row"><a class="book_detail" href="">Gao</a></td>
-                        <td scope="row">02/02/2020</td>
-                        <td scope="row">Nam</td>
-                        <td>
-                            <button class="btn_edit" title="Edit" type="submit" value="Edit">{{ trans('categories/category.edit') }}</button>
-                            <button class="btn_delete" title="Delete" type="submit" value="Delete">{{ trans('categories/category.delete') }}</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-    
+                    @endif
+                </tr>
+            </tbody>
+            @endforeach
+        </table>
+        {{ $category->links() }}
+    </div>
+</section>
+
 @endsection

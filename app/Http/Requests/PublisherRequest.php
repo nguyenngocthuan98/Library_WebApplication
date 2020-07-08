@@ -25,7 +25,7 @@ class PublisherRequest extends FormRequest
     {
         return [
             'name_publisher' => 'required|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255',
             'address' => 'required|max:255',
         ];
     }

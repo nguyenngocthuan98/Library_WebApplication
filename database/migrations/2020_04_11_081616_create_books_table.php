@@ -18,6 +18,7 @@ class CreateBooksTable extends Migration
             $table->string('name_book');
             $table->tinyinteger('status');
             $table->integer('page_number');
+            $table->integer('quantity');
             $table->string('image');
             $table->text('description');
             $table->integer('id_category');

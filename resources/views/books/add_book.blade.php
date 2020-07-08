@@ -9,7 +9,7 @@
         <div class="page_info">
             <h2>{{ trans('books/add_book.add_book') }}</h2>
         </div>
-        @if ($errors->any())
+        {{-- @if ($errors->any())
             <div class="alert alert-danger">
                 {{ trans('books/add_book.error_require') }}<br><br>
                 <ul>
@@ -18,7 +18,7 @@
                     @endforeach
                 </ul>
             </div>
-        @endif
+        @endif --}}
         <form method="POST" action="{{ route('books.store') }}">
             @csrf
             @if (session('success'))
@@ -57,6 +57,14 @@
                 <label>{{ trans('books/edit_book.page_number') }}</label>
                 <input class="form-control @error('page_number') is-invalid @enderror" name="page_number" value="{{ old('page_number') }}">
                     @error('page_number')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                {{-- quantity --}}
+                <label>{{ trans('books/book_detail.quantity') }}</label>
+                <input class="form-control @error('quantity') is-invalid @enderror" name="quantity" value="{{ old('quantity') }}">
+                    @error('quantity')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

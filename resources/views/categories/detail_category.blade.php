@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title_header', trans('books/book.title_header'))
+@section('title_header', $category->name_category)
 
 @section('main')
 
@@ -9,20 +9,19 @@
         <div class="container list_book">
             <div class="row">
                 <div class="col-9">
-                @if (auth()->check() && Auth::user()->role == \App\Models\User::ADMIN)
-                    <a href="{{route('books.create')}}"><button type="button" class="btn btn_new"> {{ trans('books/book.add_new') }} </button></a>
-                @endif
+                    <h1>{{ $category->name_category }}</h1>
                 </div>
-                <div class="col-3">
+                {{-- search --}}
+                {{-- <div class="col-3">
                     <div class="search-book">
                         <form class="search_widget" action="{{ url('books') }}" method="GET">
                             <input type="hidden" name="action" value="search">
                             <input type="text" name="key" id="input" class="form-control" value="" placeholder="{{ trans('books/book.search') }}">
                             <button type="submit">{{ trans('books/book.search') }}</button>
                         </form>
-                    </div>
-                </div>
-                <!-- list book admin-->
+                    </div> --}}
+            </div>
+                <!-- list book with category-->
                 <table class="table table-striped text_table">
                     <thead>
                         <tr>
@@ -38,11 +37,11 @@
                         </tr>
                     </thead>
                     {{-- data below --}}
-                    @foreach($listbook as $book)
+                    @foreach($books as $book)
                     <tbody>
                         <tr>
-                            <td scope="row"><a class="book_detail" href="{{ route('books.show',$book->id) }}">{{ $book->name_book }}</a></td>
-                            <td scope="row"><a href="{{ route('books.show',$book->id) }}"><image class="image_list" src="{{ $book->image }}" alt="#"></image></a></td>
+                            <td scope="row"><a class="book_detail" href="{{-- {{ route('books.show',$book->id) }} --}}">{{ $book->name_book }}</a></td>
+                            <td scope="row"><a href="{{-- {{ route('books.show',$book->id) }} --}}"><image class="image_list" src="{{ $book->image }}" alt="#"></image></a></td>
                             <td scope="row">{{ $book->category->name_category }}</td>
                             <td scope="row">{{ $book->quantity }}</td>
                             <td scope="row">{{ $book->author->name_author }}</td>
@@ -61,7 +60,7 @@
                     </tbody>
                     @endforeach
                 </table>
-                {{$listbook->links()}}
+                {{$books->links()}}
             </div>
             <!-- list book end -->
     </div>

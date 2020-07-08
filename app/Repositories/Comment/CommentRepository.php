@@ -11,8 +11,4 @@ class CommentRepository extends BaseRepository implements CommentRepositoryInter
 	{
 		return Comment::class;
 	}
-	public function getModel()
-	{
-		return Book::class;
-	}
 }

@@ -1,5 +1,5 @@
 <?php
- 
+
 return [
 	'title_header' => 'Publisher',
 	'search' => 'Search',
@@ -11,4 +11,5 @@ return [
 	'option' => 'Option',
 	'edit' => 'Edit',
 	'delete' => "Delete",
+    'no' => 'No.',
 ];

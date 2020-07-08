@@ -9,7 +9,7 @@ return [
 	'page_number' => 'Page Number',
 	'publisher' => 'Publisher',
 	'author' => 'Author',
-	'cancel' => 'Cancel',
+	'cancel' => 'Back',
 	'edit' => 'edit',
 	'description' => 'Description',
 	'choosefile' => 'Choose file',

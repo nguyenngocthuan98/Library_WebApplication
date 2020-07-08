@@ -61,7 +61,7 @@ class UsersController extends Controller
      */
     public function store(UserRequest $request)
     {
-        
+
         try {
             $user = [
                 'name' => $request->name,
@@ -123,7 +123,7 @@ class UsersController extends Controller
             'gender' => $request->gender,
             'phone' => $request->phone,
         ];
-        $this->userRepo->findOrFail($id, $user);
+        $this->userRepo->update($id, $user);
 
         return redirect()->back()->with(['update_success' => trans('controller/user.update_success') ]);
         } catch (ModelNotFoundException $e) {
@@ -139,7 +139,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        
+
         try {
             $user = $this->userRepo->delete($id);
         return redirect()->back()->with(['delete_success' => trans('controller/user.delete_success')]);

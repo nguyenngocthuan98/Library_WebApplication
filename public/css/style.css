@@ -27,6 +27,9 @@ img {
     color: white;
     margin-top: 20px;
 }
+.img_height{
+    height: 250px;
+}
 .book_item .read_more{
     font-size: 15px;
     text-transform: uppercase;
@@ -490,4 +493,5 @@ a.notification-desc span {
 .header-bottom .header-right i.count-notify {
   border: none
 }
+
 

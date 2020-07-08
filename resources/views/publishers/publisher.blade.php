@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-9">
                 @if (auth()->check() && Auth::user()->role == \App\Models\User::ADMIN)
-                    <a href="{{ route('publishers.create') }}"><button class="btn_new">{{ trans('publishers/publisher.add_new') }}</button></a>
+                    <a href="{{ route('publishers.create') }}"><button class="btn btn_new">{{ trans('publishers/publisher.add_new') }}</button></a>
                 @endif
             </div>
             <div class="col-3">
@@ -30,7 +30,7 @@
             <table class="table table-striped text_table cent_table">
             <thead>
                 <tr>
-                    <th scope="col">{{ trans('publishers/publisher.id') }}</th>
+                    <th scope="col">{{ trans('publishers/publisher.no') }}</th>
                     <th scope="col">{{ trans('publishers/publisher.name') }}</th>
                     <th scope="col">{{ trans('publishers/publisher.email') }}</th>
                     <th scope="col">{{ trans('publishers/publisher.address') }}</th>
@@ -49,11 +49,11 @@
                     <td scope="row">{{ $data_publisher->address}}</td>
                     @if (auth()->check() && Auth::user()->role == \App\Models\User::ADMIN)
                         <td>
-                            <a class="btn_edit edit_user" title="Edit" type="submit" value="Edit" href="{{ route('publishers.edit',$data_publisher->id) }}">{{ trans('publishers/publisher.edit') }}</a>
+                            <a class="btn btn_edit edit_user" title="Edit" type="submit" value="Edit" href="{{ route('publishers.edit',$data_publisher->id) }}">{{ trans('publishers/publisher.edit') }}</a>
                             <form action="{{ route('publishers.destroy',$data_publisher->id) }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('delete') }}
-                                <button class="btn_delete delete_user" title="Delete" type="submit" value="Delete">{{ trans('publishers/publisher.delete') }}</button>
+                                <button class="btn btn_delete delete_user" title="Delete" type="submit" value="Delete">{{ trans('publishers/publisher.delete') }}</button>
                             </form>
 
                         </td>

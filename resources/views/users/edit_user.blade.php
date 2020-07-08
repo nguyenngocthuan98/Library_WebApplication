@@ -52,8 +52,8 @@
                 <input class="form-control" name="phone" value="{{ $user->phone }}">
 
                 <div class="form-group edit_btn">
-                    <a class="btn_book_cancel" href="{{ route('users.index') }}">{{ trans('users/edit_user.cancel') }}</a>
-                    <button class="btn_book_add" type="submit" class="btn-primary">{{ trans('users/edit_user.edit') }}</button>
+                    <a class="btn btn_book_cancel" href="{{ route('users.index') }}">{{ trans('users/edit_user.cancel') }}</a>
+                    <button class="btn btn_book_add" type="submit" class="btn-primary">{{ trans('users/edit_user.edit') }}</button>
                 </div>
             </div>
         </form>

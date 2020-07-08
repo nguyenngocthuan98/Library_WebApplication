@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-9">
                 @if (auth()->check() && Auth::user()->role == \App\Models\User::ADMIN)
-                    <a href="{{ url('authors/create') }}"><button class="btn_new">{{ trans('authors/author.add_new') }}</button></a>
+                    <a href="{{ url('authors/create') }}"><button class="btn btn_new">{{ trans('authors/author.add_new') }}</button></a>
                 @endif
             </div>
             <div class="col-3">
@@ -25,26 +25,28 @@
         <table class="table table-striped text_table group_table">
             <thead>
                 <tr>
-                    <th scope="col">{{ trans('authors/author.id') }}</th>
+                    <th scope="col">{{ trans('authors/author.no') }}</th>
                     <th scope="col">{{ trans('authors/author.name') }}</th>
+                    <th scope="col">{{ trans('authors/author.id') }}</th>
                     @if (auth()->check() && Auth::user()->role == \App\Models\User::ADMIN)
                         <th class="opt_auth" scope="col">{{ trans('authors/author.option') }}</th>
                     @endif
                 </tr>
             </thead>
-            <?php  $i=1 ?>
+            @php  ($i=1)
             @foreach ($author as $data_author)
             <tbody>
                 <tr>
-                    <td scope="row"><?php echo $i++; ?></td>
+                    <td scope="row"><?php echo $i++ ;?></td>
                     <td scope="row">{{ $data_author->name_author}}</td>
+                    <td scope="row">{{ $data_author->id }}</td>
                     @if (auth()->check() && Auth::user()->role == \App\Models\User::ADMIN)
                         <td>
-                            <a href="{{ url('authors/'.$data_author->id.'/edit')}}"><button class="btn_edit" title="Edit" type="submit" value="Edit">{{ trans('authors/author.edit') }}</button></a>
+                            <a href="{{ url('authors/'.$data_author->id.'/edit')}}"><button class="btn btn_edit" title="Edit" type="submit" value="Edit">{{ trans('authors/author.edit') }}</button></a>
                             <form class="set_form" action="{{ url("authors/$data_author->id") }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('delete') }}
-                                <button class="btn_delete" type="submit" title="Delete">{{ trans('authors/author.delete') }}</button>
+                                <button class="btn btn_delete" type="submit" title="Delete">{{ trans('authors/author.delete') }}</button>
                             </form>
                         </td>
                     @endif

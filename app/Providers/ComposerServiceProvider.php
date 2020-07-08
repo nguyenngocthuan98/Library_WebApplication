@@ -40,7 +40,8 @@ class ComposerServiceProvider extends ServiceProvider
         view()->composer([
                 'books.edit_book',
                 'books.add_book',
-                'books.book'
+                'books.book',
+                'partials.navbar'
             ],
             'App\Http\ViewComposers\CategoryComposer'
         );

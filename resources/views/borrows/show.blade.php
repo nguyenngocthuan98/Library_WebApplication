@@ -55,7 +55,7 @@
                         <label >{{ trans('borrows/borrow.name_user') }}</label>
                         <input type="text" class="form-control" value="{{ Auth::user()->name }}" disabled>
                     </div>
-                    	<button type="submit" class="btn_borrow_b">{{ trans('borrows/borrow.btn_borrow') }}</button>
+                    	<button type="submit" class="btn btn_borrow_b">{{ trans('borrows/borrow.btn_borrow') }}</button>
                 </form>
             </div>
         </div>

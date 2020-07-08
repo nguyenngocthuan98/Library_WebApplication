@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'libra' => 'Library Management',
+    'libra' => 'Library of Vietnamese Association',
 	'home' => 'Home',
     'book' => 'Book',
     'author' => 'Author',
@@ -17,7 +17,7 @@ return [
     'more' => 'More...',
     'user' => 'User',
     'ad-manage' => 'Admin Manage',
-    'list_borrow' => 'Borrow List',
+    'list_borrow' => 'Your Borrow',
     'chart' => 'Chart',
     'notifications' => 'Notifications',
     'mark-all-read' => 'Mark all as read',

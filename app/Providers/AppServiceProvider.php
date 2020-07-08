@@ -17,6 +17,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Book\BookRepositoryInterface::class,
             \App\Repositories\Book\BookRepository::class
         );
+        $this->app->singleton(
+            \App\Repositories\Borrow\BorrowRepositoryInterface::class,
+            \App\Repositories\Borrow\BorrowRepository::class
+        );
 
         $this->app->singleton(
             \App\Repositories\Author\AuthorRepositoryInterface::class,
@@ -32,10 +36,15 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\User\UserRepositoryInterface::class,
             \App\Repositories\User\UserRepository::class
         );
-        
+
         $this->app->singleton(
             \App\Repositories\Publisher\PublisherRepositoryInterface::class,
             \App\Repositories\Publisher\PublisherRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Repositories\Category\CategoryRepositoryInterface::class,
+            \App\Repositories\Category\CategoryRepository::class
         );
     }
 

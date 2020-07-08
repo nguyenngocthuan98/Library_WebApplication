@@ -1,6 +1,7 @@
     <!-- Responsive Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg_tool fixed-top">
         <a class="navbar-brand" href="{{ route('home') }}">{{ trans('partials/navbar.libra') }}</a>
+        <a class="navbar-brand" href="{{ route('home') }}"><img src="https://www.vietnamuknetwork.org.uk/wp-content/themes/nashtech/library/images/logo.png" alt="logo" style="width:35px;height:35px;"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -16,10 +17,12 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ trans('partials/navbar.category') }}</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="">Action</a>
-                        <a class="dropdown-item" href="#">Fantasy</a>
+                        {{-- foreach with limit with 5 item --}}
+                        @foreach (array_slice($categories, 0, 5) as $category)
+                        <a class="dropdown-item" href="{{ route('categories.show',$category->id) }}">{{ $category->name_category }}</a>
+                        @endforeach
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{-- {{ route('categories.index') }} --}}">{{ trans('partials/navbar.more') }}</a>
+                        <a class="dropdown-item" href="{{ route('categories.index') }}"><b>{{ trans('partials/navbar.more') }}</b></a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -40,7 +43,7 @@
                 <li class="nav-item">
                     <a href="{{ route('admin.chart_borrow.index') }}" class="nav-link">{{ trans('partials/navbar.chart') }}</a>
                 </li>
-                {{-- bell of nitify to admin--}}
+                {{-- bell of notify to admin--}}
                     <li class="nav-item dropdown dropdown-notifications">
                         <a href="#notifications-panel" class="nav-link dropdown-toggle-bell" data-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-bell notification-icon text-primary">

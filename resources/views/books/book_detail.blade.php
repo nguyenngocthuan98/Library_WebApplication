@@ -17,8 +17,9 @@
                     <div class="gs_meta">
                         <h3 class="gs_title"><b>{{ $thisbook->name_book }}</b></h3>
                         <h3>{{ trans('books/book_detail.author') }}: {{ $thisbook->author->name_author }}</h3>
-                        <h3>{{ trans('books/book_detail.status') }}: {{ BookHelper::getRole($thisbook->status) }}</h3>
+                        {{-- <h3>{{ trans('books/book_detail.status') }}: {{ BookHelper::getRole($thisbook->status) }}</h3> --}}
                         <h3>{{ trans('books/book_detail.page_number') }}:{{ $thisbook->page_number }}</h3>
+                        <h3>{{ trans('books/book_detail.quantity') }}:{{ $thisbook->quantity }} @if ($thisbook->quantity <= 0) <span class="badge badge-danger">Runned out</span> @endif </h3>
                         <div class="row">
                             <div class="col-3">
                                 <h2>{{ trans('books/book_detail.rating') }}:</h2>
@@ -34,7 +35,11 @@
                         <h3>{{ trans('books/book_detail.like') }} :123 {{-- {{ $cmt->id_book }} --}}</h3>
                         <div class="row">
                             <div class="col-3">
-                                <a href="{{ route('borrow.show', ['id' => $thisbook->id]) }}" type="button" class="btn_borrow">{{ trans('books/book_detail.btn_borrow') }}</a>
+                                @if($thisbook->quantity > 0)
+                                <a href="{{ route('borrow.show', ['id' => $thisbook->id]) }}" type="button" class="btn btn_borrow">{{ trans('books/book_detail.btn_borrow') }}</a>
+                                @else
+                                <a type="button" href="" class="btn btn-danger" data-toggle="tooltip" data-placement="right" title="This book is runned out">{{ trans('books/book_detail.btn_borrow') }}</a>
+                                @endif
                             </div>
                             <div class="col-8">
                                 <form method="post" action="">
@@ -82,7 +87,7 @@
                     @enderror
                     <textarea class="form-control mt-3" name="comment" id="comment" rows="5" placeholder="{{ trans('books/book_detail.text_comment') }}"></textarea>
                 </div>
-                <button type="submit" class="genric-btn success mb-3">{{ trans('books/book_detail.comment') }}</button>
+                <button type="submit" class="btn btn-success">{{ trans('books/book_detail.comment') }}</button>
             </form>
         </div>
     </section>

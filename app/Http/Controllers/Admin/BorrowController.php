@@ -6,12 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Models\Borrow;
 use App\Models\User;
 use App\Models\Book;
-
+use App\Repositories\Book\BookRepositoryInterface;
+use App\Repositories\Borrow\BorrowRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class BorrowController extends Controller
 {
+    protected $bookRepo;
+    protected $borrowRepo;
+
+    public function __construct(BookRepositoryInterface $bookRepo,BorrowRepositoryInterface $borrowRepo)
+    {
+        $this->bookRepo = $bookRepo;
+        $this->borrowRepo = $borrowRepo;
+    }
+
     public function index()
     {
         $take = config('setting.paginate');
@@ -25,12 +35,18 @@ class BorrowController extends Controller
         Borrow::where('id', '=', $id)->update($borrow);
     }
 
-    public function accept($id)
+    public function accept($id, $id_book)
     {
+        $borrow = $this->borrowRepo->findOrFail($id);
+        $book = $this->bookRepo->findOrFail($id_book);
         $status = Borrow::BORROWING;
+        $book = [
+            'quantity' => $book->quantity - 1
+        ];
+        $this->bookRepo->update($id_book, $book);
         $this->action($id, $status);
 
-            return redirect()->back();
+        return redirect()->back();
     }
 
     public function deny($id)
@@ -41,9 +57,15 @@ class BorrowController extends Controller
         return redirect()->back();
     }
 
-    public function pay($id)
+    public function pay($id, $id_book)
     {
+        $borrow = $this->borrowRepo->findOrFail($id);
+        $book = $this->bookRepo->findOrFail($id_book);
         $status = Borrow::RETURN;
+        $book = [
+            'quantity' => $book->quantity + 1
+        ];
+        $this->bookRepo->update($id_book, $book);
         $this->action($id, $status);
 
         return redirect()->back();
